@@ -34,9 +34,8 @@ RUN sed -i 's/^Foreground .*$/Foreground true/g' /etc/clamav/clamd.conf && \
     if ! [ -z $HTTPProxyPort   ]; then echo "HTTPProxyPort $HTTPProxyPort" >> /etc/clamav/freshclam.conf; fi && \
     sed -i 's/^Foreground .*$/Foreground true/g' /etc/clamav/freshclam.conf
 
-RUN touch /var/lib/clamav/clamd.sock
-RUN chown clamav:clamav /var/lib/clamav/clamd.sock
-RUN echo "LocalSocket /var/lib/clamav/clamd.sock" >> /etc/clamav/clamd.conf
+RUN touch /var/run/clamav/clamd.ctl
+RUN chown clamav:clamav /var/run/clamav/clamd.ctl
 
 # port provision
 EXPOSE 3310
